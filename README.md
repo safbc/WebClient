@@ -21,4 +21,9 @@ with
   var moment = require('../../../moment/moment');
 ```
 
-See https://github.com/mgechev/angular-seed/issues/442 for more details
+See 
+
+ - https://github.com/mgechev/angular-seed/issues/442 
+ - http://stackoverflow.com/questions/40735865/getting-an-error-typeerror-undefined-is-not-observable
+ 
+ for more details
