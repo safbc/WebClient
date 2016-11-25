@@ -64,6 +64,8 @@ var TransferComponent = (function () {
     };
     TransferComponent.prototype.transferAsset = function () {
         var _this = this;
+        this.msg = "Transferring assets to " + this.toUser.name;
+        this.errMsg = "";
         this.userService.getUser()
             .then(function (user) {
             console.log('user:', user);
@@ -74,11 +76,16 @@ var TransferComponent = (function () {
                 .subscribe(function (data) {
                 if (data["err"] && data["err"] != '') {
                     console.log('An error occured: ', data["err"]);
+                    _this.errMsg = data["err"];
                 }
                 else {
                     console.log(data);
+                    _this.msg = "Transfer sent to blockchain.  TxId = " + data["txId"];
                 }
-            }, function (err) { console.log(err.Message); });
+            }, function (err) {
+                console.log(err.Message);
+                _this.errMsg = err.Message;
+            });
         });
     };
     TransferComponent = __decorate([

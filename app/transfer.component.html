@@ -37,6 +37,12 @@
             <button (click)="transferAsset() "type="button" class="btn btn-primary">Transfer</button>
 					</td>
         </tr>
+        <tr>
+          <td colspan="2">
+            <div class="alert alert-success" *ngIf="msg && msg!=''">{{msg}}</div>
+            <div class="alert alert-danger" *ngIf="errMsg && errMsg!=''">{{errMsg}}</div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

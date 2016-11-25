@@ -21,6 +21,8 @@ export class TransferComponent implements OnInit {
   private selectedCounterparty: string='';
   private toUser: any;
   private amountToTransfer: number=0;
+  private msg: string;
+  private errMsg: string;
 
   constructor(
 		private router: Router, 
@@ -76,6 +78,8 @@ export class TransferComponent implements OnInit {
 	}
 
 	transferAsset(): void {
+    this.msg = "Transferring assets to " + this.toUser.name;
+    this.errMsg = "";
     this.userService.getUser()
       .then(user => {
         console.log('user:', user);
@@ -87,11 +91,16 @@ export class TransferComponent implements OnInit {
 						data => {
 							if(data["err"] && data["err"] != ''){
 								console.log('An error occured: ', data["err"]);
+                this.errMsg = data["err"];
 							} else {
 								console.log(data);
+                this.msg = "Transfer sent to blockchain.  TxId = " + data["txId"];
 							}
 						},
-						err => { console.log(err.Message); }
+						err => { 
+              console.log(err.Message);
+              this.errMsg = err.Message;
+            }
 		  		);
 			});
   }
