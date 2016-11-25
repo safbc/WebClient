@@ -71,21 +71,41 @@ export class TransferComponent implements OnInit {
 	}
 
   counterpartyOnSelect(e: any) {
-    console.log('Selected user:', e.value);
 		var userIndex = this.counterparties.map(function(x) {return x.name; }).indexOf(e.value);
 		this.toUser = this.counterparties[userIndex];
-		console.log('this.toUser:', this.toUser);
 	}
 
 	transferAsset(): void {
-    this.msg = "Transferring assets to " + this.toUser.name;
     this.errMsg = "";
     this.userService.getUser()
       .then(user => {
-        console.log('user:', user);
-        console.log('selectedAsset:', this.selectedAsset);
-        console.log('amountToTransfer:', this.amountToTransfer);
-        console.log('toUser:', this.toUser);
+        if(!user || user.isLoggedIn == false){
+          this.errMsg = "You have been logged out, please login again";
+          return;
+        } 
+
+        if(!this.selectedAsset || this.selectedAsset==''){
+          this.errMsg = "Please select a valid asset";
+          return;
+        } else {
+          var assetIndex = this.assets.map(function(x) {return x; }).indexOf(this.selectedAsset);
+          if(assetIndex==-1){
+            this.errMsg = "Please select a valid asset";
+            return;
+          }
+        }
+
+        if(!this.toUser){
+          this.errMsg = "Please select a valid counterparty to do the transaction with";
+          return;
+        }
+
+        if(!this.amountToTransfer || this.amountToTransfer == 0){
+          this.errMsg = "Please select a valid amount to transfer";
+          return;
+        }
+
+        this.msg = "transferring assets to " + this.toUser.name;
 				this.assetService.transferAsset(this.selectedAsset, this.amountToTransfer, user.address, user.password, this.toUser.address) 
 					.subscribe(
 						data => {
@@ -95,6 +115,11 @@ export class TransferComponent implements OnInit {
 							} else {
 								console.log(data);
                 this.msg = "Transfer sent to blockchain.  TxId = " + data["txId"];
+                this.selectedAsset = '';
+                this.selectedCounterparty = '';
+                this.toUser = null;
+                this.amountToTransfer = 0;
+                this.assetBalance = 0;
 							}
 						},
 						err => { 

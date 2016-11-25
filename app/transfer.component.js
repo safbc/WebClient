@@ -57,21 +57,38 @@ var TransferComponent = (function () {
         });
     };
     TransferComponent.prototype.counterpartyOnSelect = function (e) {
-        console.log('Selected user:', e.value);
         var userIndex = this.counterparties.map(function (x) { return x.name; }).indexOf(e.value);
         this.toUser = this.counterparties[userIndex];
-        console.log('this.toUser:', this.toUser);
     };
     TransferComponent.prototype.transferAsset = function () {
         var _this = this;
-        this.msg = "Transferring assets to " + this.toUser.name;
         this.errMsg = "";
         this.userService.getUser()
             .then(function (user) {
-            console.log('user:', user);
-            console.log('selectedAsset:', _this.selectedAsset);
-            console.log('amountToTransfer:', _this.amountToTransfer);
-            console.log('toUser:', _this.toUser);
+            if (!user || user.isLoggedIn == false) {
+                _this.errMsg = "You have been logged out, please login again";
+                return;
+            }
+            if (!_this.selectedAsset || _this.selectedAsset == '') {
+                _this.errMsg = "Please select a valid asset";
+                return;
+            }
+            else {
+                var assetIndex = _this.assets.map(function (x) { return x; }).indexOf(_this.selectedAsset);
+                if (assetIndex == -1) {
+                    _this.errMsg = "Please select a valid asset";
+                    return;
+                }
+            }
+            if (!_this.toUser) {
+                _this.errMsg = "Please select a valid counterparty to do the transaction with";
+                return;
+            }
+            if (!_this.amountToTransfer || _this.amountToTransfer == 0) {
+                _this.errMsg = "Please select a valid amount to transfer";
+                return;
+            }
+            _this.msg = "transferring assets to " + _this.toUser.name;
             _this.assetService.transferAsset(_this.selectedAsset, _this.amountToTransfer, user.address, user.password, _this.toUser.address)
                 .subscribe(function (data) {
                 if (data["err"] && data["err"] != '') {
@@ -81,6 +98,11 @@ var TransferComponent = (function () {
                 else {
                     console.log(data);
                     _this.msg = "Transfer sent to blockchain.  TxId = " + data["txId"];
+                    _this.selectedAsset = '';
+                    _this.selectedCounterparty = '';
+                    _this.toUser = null;
+                    _this.amountToTransfer = 0;
+                    _this.assetBalance = 0;
                 }
             }, function (err) {
                 console.log(err.Message);
