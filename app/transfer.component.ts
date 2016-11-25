@@ -78,7 +78,11 @@ export class TransferComponent implements OnInit {
 	transferAsset(): void {
     this.userService.getUser()
       .then(user => {
-				this.assetService.transferAsset(this.selectedAsset, this.amountToTransfer, user.name, user.password, this.toUser.address) 
+        console.log('user:', user);
+        console.log('selectedAsset:', this.selectedAsset);
+        console.log('amountToTransfer:', this.amountToTransfer);
+        console.log('toUser:', this.toUser);
+				this.assetService.transferAsset(this.selectedAsset, this.amountToTransfer, user.address, user.password, this.toUser.address) 
 					.subscribe(
 						data => {
 							if(data["err"] && data["err"] != ''){

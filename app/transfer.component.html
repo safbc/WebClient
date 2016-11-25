@@ -8,11 +8,11 @@
         <tr>
           <td>Asset</td>
           <td>
-  					<input [(ngModel)]="selectedAsset"
-         					 [typeahead]="assets"
-         					 (typeaheadOnSelect)="assetOnSelect($event)"
-         					 class="form-control">
-				  </td>
+          <input [(ngModel)]="selectedAsset"
+             [typeahead]="assets"
+             (typeaheadOnSelect)="assetOnSelect($event)"
+             class="form-control">
+          </td>
         </tr>
         <tr>
           <td>Current Balance</td>
@@ -22,9 +22,9 @@
           <td>Transfer to</td>
           <td>
   					<input [(ngModel)]="selectedCounterparty"
-         					 [typeahead]="counterpartyNames"
-         					 (typeaheadOnSelect)="counterpartyOnSelect($event)"
-         					 class="form-control">
+     					 [typeahead]="counterpartyNames"
+     					 (typeaheadOnSelect)="counterpartyOnSelect($event)"
+     					 class="form-control">
 					</td>
         </tr>
         <tr>
@@ -34,7 +34,7 @@
         <tr>
           <td></td>
           <td>
-            <button (click)="transferAsset() "type="button" class="btn btn-primary">Login</button>
+            <button (click)="transferAsset() "type="button" class="btn btn-primary">Transfer</button>
 					</td>
         </tr>
       </tbody>

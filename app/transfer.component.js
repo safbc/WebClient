@@ -66,7 +66,11 @@ var TransferComponent = (function () {
         var _this = this;
         this.userService.getUser()
             .then(function (user) {
-            _this.assetService.transferAsset(_this.selectedAsset, _this.amountToTransfer, user.name, user.password, _this.toUser.address)
+            console.log('user:', user);
+            console.log('selectedAsset:', _this.selectedAsset);
+            console.log('amountToTransfer:', _this.amountToTransfer);
+            console.log('toUser:', _this.toUser);
+            _this.assetService.transferAsset(_this.selectedAsset, _this.amountToTransfer, user.address, user.password, _this.toUser.address)
                 .subscribe(function (data) {
                 if (data["err"] && data["err"] != '') {
                     console.log('An error occured: ', data["err"]);
