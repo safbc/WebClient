@@ -26,4 +26,6 @@ See
  - https://github.com/mgechev/angular-seed/issues/442 
  - http://stackoverflow.com/questions/40735865/getting-an-error-typeerror-undefined-is-not-observable
  
- for more details
+for more details
+
+//TODO: update system.config.js as per this recommendation https://github.com/valor-software/ng2-bootstrap/issues/1220 and see if the above bug is resolved
