@@ -8,7 +8,7 @@ In order to run this client, do the following:
 
 There is currently a bug in the ng2-bootstrap npm package.  You need to modify the file in
   
->node-modules/ng2-bootstrap/components/datepicker/date-formatter.js
+>node_modules/ng2-bootstrap/components/datepicker/date-formatter.js
   
 replace
 
