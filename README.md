@@ -5,27 +5,5 @@ In order to run this client, do the following:
 
  - Install npm
  - Type npm install
-
-There is currently a bug in the ng2-bootstrap npm package.  You need to modify the file in
-  
->node_modules/ng2-bootstrap/components/datepicker/date-formatter.js
-  
-replace
-
-```
-  var moment = require('moment');
-```
-
-with 
-```
-  var moment = require('../../../moment/moment');
-```
-
-See 
-
- - https://github.com/mgechev/angular-seed/issues/442 
- - http://stackoverflow.com/questions/40735865/getting-an-error-typeerror-undefined-is-not-observable
  
-for more details
-
-//TODO: update system.config.js as per this recommendation https://github.com/valor-software/ng2-bootstrap/issues/1220 and see if the above bug is resolved
+It is worth noting that this client will not display anything unless you are running some kind of blockchain in the background. Check the other repos here for examples of chains you can run that will work with this Web Client.
