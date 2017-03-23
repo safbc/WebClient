@@ -2,7 +2,7 @@ import { browser, element, by } from 'protractor';
 
 describe('QuickStart E2E Tests', function () {
 
-  let expectedMsg = 'My First Angular App';
+  var expectedMsg: any = 'My First Angular App';
 
 
   beforeEach(function () {
@@ -10,7 +10,7 @@ describe('QuickStart E2E Tests', function () {
   });
 
   it('should display: ' + expectedMsg, function () {
-    expect(element(by.css('h1')).getText()).toEqual(expectedMsg);
+    expect<any>(element(by.css('h1')).getText()).toEqual(expectedMsg);
   });
 
 });
