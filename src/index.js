@@ -13,8 +13,9 @@ import {grey800, grey900} from 'material-ui/styles/colors'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
-import Title from './components/Title'
+import Title from './containers/Title'
 import Menu from './components/Menu'
+import LeftMenu from './containers/LeftMenu'
 import Home from './containers/Home'
 import Create from './containers/Create'
 import Trade from './containers/Trade'
@@ -43,7 +44,7 @@ render(
       <Router>
         <div>
           <Title /> 
-          <Menu />
+          <LeftMenu />
 
           <hr/>
 

@@ -1,15 +1,12 @@
 import React from 'react'
 import AppBar from 'material-ui/AppBar'
 
-/**
- * A simple example of `AppBar` with an icon on the right.
- * By default, the left icon is a navigation-menu.
- */
-const Title = () => (
+const TitleComponent = ({openMenu}) => (
   <AppBar
     title="Springblock common user interface for Blockchain asset creation and trading"
     iconClassNameRight="muidocs-icon-navigation-expand-more"
+    onLeftIconButtonTouchTap={openMenu}
   />
 );
 
-export default Title
+export default TitleComponent
