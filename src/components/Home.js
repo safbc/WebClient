@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const HomeComponent = ({currentUser}) => {
-
 	return (
 		<div>
       This is the home page

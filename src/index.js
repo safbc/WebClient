@@ -12,13 +12,17 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 import {grey800, grey900} from 'material-ui/styles/colors'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
+import Paper from 'material-ui/Paper'
 
-import Title from './containers/Title'
+import Title from './components/Title'
 import Menu from './components/Menu'
-import LeftMenu from './containers/LeftMenu'
+import LeftMenu from './components/LeftMenu'
 import Home from './containers/Home'
-import Create from './containers/Create'
+import Rtgs from './containers/Rtgs'
 import Trade from './containers/Trade'
+import BlockchainViewer from './containers/BlockchainViewer'
+import Settings from './containers/Settings'
 
 injectTapEventPlugin();
 
@@ -31,26 +35,49 @@ const store = createStore(
   )
 )
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: grey800,
-    primary2Color: grey900
+const styles = {
+  div:{
+    display: 'flex',
+    flexDirection: 'row wrap',
+    padding: 10,
+    width: '100%'
+  },
+  paperLeft:{
+    flex: 1,
+    maxWidth: 240,
+    height: 600,
+    margin: 5,
+    textAlign: 'left',
+  },
+  paperRight:{
+    height: 600,
+    flex: 4,
+    margin: 5,
+    textAlign: 'center',
   }
-});
+};
 
 render(
   <Provider store={store}>
-    <MuiThemeProvider muiTheme={muiTheme}>
+    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <Router>
         <div>
-          <Title /> 
-          <LeftMenu />
+          <Title />
+          <div style={styles.div}>
+            <Paper zDepth={1} style={styles.paperLeft}>
+              <LeftMenu />
+            </Paper>
+            <Paper zDepth={1} style={styles.paperRight}>
+              <h4>Content</h4>
+              <Route exact path="/" component={Home}/>
+              <Route path="/home" component={Home}/>
+              <Route path="/rtgs" component={Rtgs}/>
+              <Route path="/trade" component={Trade}/>
+              <Route path="/blockchainViewer" component={BlockchainViewer}/>
+              <Route path="/settings" component={Settings}/>
+            </Paper>
+          </div>
 
-          <hr/>
-
-          <Route exact path="/" component={Home}/>
-          <Route path="/create" component={Create}/>
-          <Route path="/trade" component={Trade}/>
         </div>
       </Router>
 

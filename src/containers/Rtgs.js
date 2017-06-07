@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
-import CreateComponent from '../components/Create'
+import RtgsComponent from '../components/Rtgs'
 
 const mapStateToProps = (state) => ({
 	currentUser: state.currentUser
 })
 
-const Create = connect(
+const Rtgs = connect(
   mapStateToProps
-)(CreateComponent)
+)(RtgsComponent)
 
-export default Create
+export default Rtgs
 

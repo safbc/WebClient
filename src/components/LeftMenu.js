@@ -1,24 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
-import Drawer from 'material-ui/Drawer'
 import {List, ListItem} from 'material-ui/List'
 import ActionHome from 'material-ui/svg-icons/action/home'
 import ActionDashboard from 'material-ui/svg-icons/action/dashboard'
 import ActionAssessment from 'material-ui/svg-icons/action/assessment'
+import ActionViewWeek from 'material-ui/svg-icons/action/label'
+import ActionSettings from 'material-ui/svg-icons/action/settings'
 
-const LeftMenuComponent = withRouter(({menuIsOpen, closeMenu, history}) => {
+const LeftMenuComponent = withRouter(({history}) => {
 	return (
-    <div>
-      <Drawer open={menuIsOpen}>
-        <List>
-          <ListItem primaryText="Home" leftIcon={<ActionHome />} onClick={() => closeMenu(history, '/home')}/>
-          <ListItem primaryText="RTGS demo" leftIcon={<ActionDashboard />} onClick={() => closeMenu(history, '/create')}/>
-          <ListItem primaryText="Trading demo" leftIcon={<ActionAssessment />} onClick={() => closeMenu(history, '/trade')}/>
-        </List>
-
-      </Drawer>
-    </div>
+    <List>
+      <ListItem primaryText="Home" leftIcon={<ActionHome />} onClick={() => history.push('/home')}/>
+      <ListItem primaryText="RTGS demo" leftIcon={<ActionDashboard />} onClick={() => history.push('/rtgs')}/>
+      <ListItem primaryText="Trading demo" leftIcon={<ActionAssessment />} onClick={() => history.push('/trade')}/>
+      <ListItem primaryText="Blockchain viewer" leftIcon={<ActionViewWeek />} onClick={() => history.push('/blockchainViewer')}/>
+      <ListItem primaryText="Settings" leftIcon={<ActionSettings />} onClick={() => history.push('/settings')}/>
+    </List>
 	)
 })
 
@@ -27,5 +25,3 @@ LeftMenuComponent.propTypes = {
 };
 
 export default LeftMenuComponent
-
-
