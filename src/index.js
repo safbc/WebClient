@@ -52,9 +52,18 @@ const styles = {
   paperRight:{
     height: 600,
     padding: 20,
-    flex: 4,
+    flex: 5,
     margin: 5,
+    marginRight: 20,
     textAlign: 'left',
+  },
+  topLevel:{
+    backgroundColor: '#505050',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
   }
 };
 
@@ -62,7 +71,7 @@ render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
       <Router>
-        <div>
+        <div style={styles.topLevel}>
           <Title />
           <div style={styles.div}>
             <Paper zDepth={1} style={styles.paperLeft}>

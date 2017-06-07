@@ -11,8 +11,9 @@ const TitleComponent = ({openMenu}) => {
     },
     header:{
       height: 64,
-      flex: 5,
+      flex: 6,
       margin: 5,
+      marginRight: 20,
       paddingLeft: 20,
       textAlign: 'left'
     }
