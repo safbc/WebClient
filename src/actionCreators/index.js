@@ -1,15 +1,8 @@
 import * as actions from '../actions'
 
-export function openMenu() {
+export function updateBlockchainSelection(selectedBlockchain) {
   return function(dispatch) {
-    dispatch(actions.openMenu());
-  }
-}
-
-export function closeMenu(history, url) {
-  history.push(url)
-  return function(dispatch) {
-    dispatch(actions.closeMenu());
+    dispatch(actions.updateBlockchainSelection(selectedBlockchain));
   }
 }
 

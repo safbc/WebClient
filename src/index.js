@@ -51,9 +51,10 @@ const styles = {
   },
   paperRight:{
     height: 600,
+    padding: 20,
     flex: 4,
     margin: 5,
-    textAlign: 'center',
+    textAlign: 'left',
   }
 };
 
@@ -68,7 +69,6 @@ render(
               <LeftMenu />
             </Paper>
             <Paper zDepth={1} style={styles.paperRight}>
-              <h4>Content</h4>
               <Route exact path="/" component={Home}/>
               <Route path="/home" component={Home}/>
               <Route path="/rtgs" component={Rtgs}/>

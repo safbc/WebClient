@@ -20,8 +20,4 @@ const LeftMenuComponent = withRouter(({history}) => {
 	)
 })
 
-LeftMenuComponent.propTypes = {
-  menuIsOpen: PropTypes.bool.isRequired
-};
-
 export default LeftMenuComponent
